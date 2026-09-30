@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+      <a class="logo" href="#"><span>Todo List</span></a>
+
+        <nav class="menu">
+          <a class="menu-link active" href="#">Все задачи</a>
+          <a class="menu-link" href="today.html">Сегодня</a>
+          <a class="menu-link" href="completed.html">Выполненные</a>
+          <a class="menu-link" href="profile.html">Аккаунт</a>
+        </nav>
+
+    </aside>
+
+      <main class="content">
+        <header class="header">
+          <div>
+          <p class="eyebrow">МОЙ ПЛАН</p>
+          <h1>Todo List</h1>
+            <p class="subtitle">
+              Небольшие шаги приводят к большим результатам.
+            </p>
+          </div>
+        </header>
+
+        <section class="stats">
+          <article class="stat-card tasks-stat">
+            <div>
+              <strong>0</strong>
+              <p>Дел на сегодня</p>
+            </div>
+          </article>
+          <article class="stat-card done-stat">
+            <div>
+              <strong>0</strong>
+              <p>Выполнено задач</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="tasks-box">
+          <div class="box-heading">
+            <div>
+              <h2>Список задач</h2>
+              <p>Здесь будет ваш список задач</p>
+            </div>
+            <span class="counter">0 задач</span>
+          </div>
+
+          <div class="empty-state">
+            <h3>Пока нет задач</h3>
+            <p>Добавьте задачу.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
