@@ -1,6 +1,23 @@
 import http from "http";
+import pg from "pg";
 
 const PORT = 3000;
+const { Pool } = pg;
+
+const pool = new Pool({
+    user: "postgres",
+    host: "localhost",
+    database: "todo_db",
+    password: "",
+    port: 5432
+});
+pool.query("SELECT NOW()", (err, result) => {
+    if (err) {
+        console.log("Database error:", err);
+    } else {
+        console.log("Database connected!");
+    }
+});
 
 const server = http.createServer((req, res) => {
 
