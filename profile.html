@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профиль — Todo List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="profile-page">
+    <a class="back-link" href="index.html">← Назад к задачам</a>
+    <section class="profile-card" data-register-page>
+      <p class="eyebrow">ПРОФИЛЬ</p>
+      <h1>Создайте свой профиль</h1>
+      <p class="profile-text">Введите данные, чтобы начать пользоваться Todo List.</p>
+      <form class="profile-form" data-register-form>
+        <label>Ваше имя<input name="name" type="text" placeholder="Например, Даниял" required></label>
+        <label>Электронная почта<input name="email" type="email" placeholder="example@mail.com" required></label>
+        <label>Пароль<input name="password" type="password" placeholder="Минимум 4 символа" minlength="4" required></label>
+        <button type="submit">Зарегистрироваться</button>
+      </form>
+      <p class="form-message" data-form-message></p>
+      <p class="login-hint">Уже есть аккаунт? <a href="login.html">Войти</a></p>
+    </section>
+  </main>
+</body>
+</html>

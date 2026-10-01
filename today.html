@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сегодня — Todo List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="logo" href="index.html"><span>Todo List</span></a>
+      <nav class="menu">
+        <a class="menu-link" href="index.html">Все задачи</a>
+        <a class="menu-link active" href="today.html">Сегодня</a>
+        <a class="menu-link" href="completed.html">Выполненные</a>
+        <a class="menu-link" href="profile.html">Аккаунт</a>
+        <button class="menu-link logout-menu" type="button" data-logout>Выйти</button>
+      </nav>
+    </aside>
+
+    <main class="content simple-page">
+      <p class="eyebrow">ПЛАН НА ДЕНЬ</p>
+      <h1>Сегодня</h1>
+      <p class="subtitle">Задачи, которые нужно выполнить сегодня.</p>
+      <section class="list-box" data-view="active">
+        <div class="box-heading"><h2>Задачи на сегодня</h2><span class="counter" data-counter>0 задач</span></div>
+        <div class="task-list" data-task-list></div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
