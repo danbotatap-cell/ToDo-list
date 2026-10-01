@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="app">
@@ -18,6 +19,7 @@
         <a class="menu-link" href="today.html">Сегодня</a>
         <a class="menu-link active" href="completed.html">Выполненные</a>
         <a class="menu-link" href="profile.html">Аккаунт</a>
+        <button class="menu-link logout-menu" type="button" data-logout>Выйти</button>
       </nav>
     </aside>
 
@@ -25,9 +27,10 @@
       <p class="eyebrow">ИСТОРИЯ</p>
       <h1>Выполненные</h1>
       <p class="subtitle">Здесь будут храниться завершённые задачи.</p>
-      <section class="list-box">
-        <div class="box-heading"><h2>Выполненные задачи</h2><span class="counter">0 задач</span></div>
-        <p class="list-placeholder">Список выполненных задач будет здесь.</p>
+      <section class="list-box" data-view="completed">
+        <div class="box-heading"><h2>Выполненные задачи</h2><span class="counter" data-counter>0 задач</span></div>
+        <div class="task-actions"><button class="text-button" type="button" data-clear="completed">Очистить выполненные</button></div>
+        <div class="task-list" data-task-list></div>
       </section>
     </main>
   </div>
