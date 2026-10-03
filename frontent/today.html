@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Today - Todo List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="today.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="logo" href="index.html"><span>Todo List</span></a>
+      <nav class="menu">
+        <a class="menu-link" href="index.html">All tasks</a>
+        <a class="menu-link active" href="today.html">Today</a>
+        <a class="menu-link" href="completed.html">Completed</a>
+      </nav>
+    </aside>
+
+    <main class="content simple-page">
+      <p class="eyebrow">DAILY PLAN</p>
+      <h1>Today</h1>
+      <p class="subtitle">Tasks to complete today.</p>
+      <section class="list-box" data-view="active">
+        <div class="box-heading"><h2>Today's tasks</h2><span class="counter" data-counter>0 tasks</span></div>
+        <div class="task-list" data-task-list></div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

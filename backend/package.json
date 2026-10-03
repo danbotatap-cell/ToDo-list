@@ -1,0 +1,13 @@
+{
+  "name": "todo-list-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "co-body": "^6.2.0",
+    "pg": "^8.23.1"
+  }
+}
