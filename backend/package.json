@@ -1,17 +1,13 @@
 {
-  "name": "backend",
+  "name": "todo-list-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
   "dependencies": {
+    "co-body": "^6.2.0",
     "pg": "^8.23.1"
   }
 }

@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f2f2f2;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  padding: 25px 15px;
+  background: white;
+  border-right: 1px solid #ddd;
+}
+
+.logo {
+  display: block;
+  margin: 0 10px 30px;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.menu {
+  display: grid;
+  gap: 7px;
+}
+
+.menu-link {
+  padding: 10px;
+  color: #666;
+  text-decoration: none;
+}
+
+.menu-link:hover {
+  background: #eee;
+}
+
+.menu-link.active {
+  background: #4f67c6;
+  color: white;
+}
+
+.content {
+  width: 900px;
+  max-width: calc(100% - 220px);
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #777;
+  font-size: 12px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.subtitle {
+  color: #777;
+}
+
+.list-box {
+  margin-top: 30px;
+  padding: 24px;
+  background: white;
+  border: 1px solid #ddd;
+}
+
+.box-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.counter {
+  padding: 5px 8px;
+  background: #eee;
+  font-size: 12px;
+}
+
+.task-actions {
+  margin-top: 12px;
+  text-align: right;
+}
+
+.text-button,
+.delete-button {
+  background: none;
+  border: none;
+  color: #a44c4c;
+}
+
+.task-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+}
+
+.task-item input {
+  width: 16px;
+  height: 16px;
+}
+
+.task-item p {
+  flex: 1;
+  margin: 0;
+}
+
+.list-placeholder {
+  margin: 35px 0;
+  color: #888;
+  text-align: center;
+}
