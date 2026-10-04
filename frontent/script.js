@@ -1,5 +1,17 @@
 const API = "http://localhost:3002";
 
+async function request(method = "GET", data) {
+  const options = { method };
+
+  if (data !== undefined) {
+    options.headers = { "Content-Type": "application/json" };
+    options.body = JSON.stringify(data);
+  }
+
+  const response = await fetch(`${API}/tasks`, options);
+  return response.json();
+}
+
 async function loadTasks() {
   const list = document.querySelector("[data-task-list]");
 
@@ -7,8 +19,7 @@ async function loadTasks() {
     return;
   }
 
-  const response = await fetch(API + "/tasks");
-  const tasks = await response.json();
+  const tasks = await request();
   const view = document.querySelector("[data-view]")?.dataset.view || "all";
   const visibleTasks = tasks.filter((task) => {
     if (view === "completed") return task.completed;
@@ -36,17 +47,7 @@ async function loadTasks() {
     checkbox.checked = task.completed;
 
     checkbox.addEventListener("change", async function () {
-      await fetch(API + "/tasks", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          id: task.id,
-          completed: checkbox.checked
-        })
-      });
-
+      await request("PUT", { id: task.id, completed: checkbox.checked });
       loadTasks();
     });
 
@@ -58,16 +59,7 @@ async function loadTasks() {
     deleteButton.className = "delete-button";
 
     deleteButton.addEventListener("click", async function () {
-      await fetch(API + "/tasks", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          id: task.id
-        })
-      });
-
+      await request("DELETE", { id: task.id });
       loadTasks();
     });
 
@@ -81,23 +73,13 @@ const taskForm = document.querySelector("[data-task-form]");
 if (taskForm) {
   taskForm.addEventListener("submit", async function (event) {
     event.preventDefault();
-
     const input = taskForm.elements.task;
 
     if (input.value === "") {
       return;
     }
 
-    await fetch(API + "/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        title: input.value
-      })
-    });
-
+    await request("POST", { title: input.value });
     input.value = "";
     loadTasks();
   });
@@ -107,20 +89,13 @@ const clearButton = document.querySelector("[data-clear]");
 
 if (clearButton) {
   clearButton.addEventListener("click", async function () {
-    const response = await fetch(API + "/tasks");
-    const tasks = await response.json();
-    const tasksToDelete = tasks.filter((task) => {
-      return clearButton.dataset.clear === "all" || task.completed;
-    });
+    const tasks = await request();
+    const tasksToDelete = tasks.filter((task) =>
+      clearButton.dataset.clear === "all" || task.completed
+    );
 
     for (const task of tasksToDelete) {
-      await fetch(API + "/tasks", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ id: task.id })
-      });
+      await request("DELETE", { id: task.id });
     }
 
     loadTasks();

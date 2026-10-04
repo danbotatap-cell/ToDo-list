@@ -16,8 +16,7 @@ const pool = new Pool({
 
 function send(res, status, data) {
   res.writeHead(status, {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*"
+    "Content-Type": "application/json"
   });
 
   res.end(JSON.stringify(data));
@@ -33,92 +32,50 @@ async function initializeDatabase() {
   `);
 }
 
+const routes = {
+  "GET /tasks": async () => {
+    const result = await pool.query("SELECT * FROM tasks ORDER BY id DESC");
+    return [200, result.rows];
+  },
+  "POST /tasks": async (req) => {
+    const task = await coBody.json(req);
+    const result = await pool.query(
+      "INSERT INTO tasks (title) VALUES ($1) RETURNING *",
+      [task.title]
+    );
+    return [201, result.rows[0]];
+  },
+  "PUT /tasks": async (req) => {
+    const task = await coBody.json(req);
+    await pool.query(
+      "UPDATE tasks SET completed = $1 WHERE id = $2",
+      [task.completed, task.id]
+    );
+    return [200, { message: "Task updated" }];
+  },
+  "DELETE /tasks": async (req) => {
+    const task = await coBody.json(req);
+    await pool.query("DELETE FROM tasks WHERE id = $1", [task.id]);
+    return [200, { message: "Task deleted" }];
+  }
+};
+
 const server = http.createServer(async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type"
-  );
-
-  // OPTIONS
   if (req.method === "OPTIONS") {
     res.writeHead(200);
     res.end();
     return;
   }
 
+  const handler = routes[`${req.method} ${req.url}`];
+  if (!handler) return send(res, 404, { message: "Not found" });
 
-  // GET TASKS
-  if (req.method === "GET" && req.url === "/tasks") {
-
-    const result = await pool.query(
-      "SELECT * FROM tasks ORDER BY id DESC"
-    );
-
-    send(res, 200, result.rows);
-    return;
-  }
-
-
-  // ADD TASK
-  if (req.method === "POST" && req.url === "/tasks") {
-
-    const task = await coBody.json(req);
-
-    const result = await pool.query(
-      "INSERT INTO tasks (title) VALUES ($1) RETURNING *",
-      [task.title]
-    );
-
-    send(res, 201, result.rows[0]);
-    return;
-  }
-
-
-  // UPDATE TASK
-  if (req.method === "PUT" && req.url === "/tasks") {
-
-    const task = await coBody.json(req);
-
-    await pool.query(
-      "UPDATE tasks SET completed = $1 WHERE id = $2",
-      [task.completed, task.id]
-    );
-
-    send(res, 200, {
-      message: "Task updated"
-    });
-
-    return;
-  }
-
-
-  // DELETE TASK
-  if (req.method === "DELETE" && req.url === "/tasks") {
-
-    const task = await coBody.json(req);
-
-    await pool.query(
-      "DELETE FROM tasks WHERE id = $1",
-      [task.id]
-    );
-
-    send(res, 200, {
-      message: "Task deleted"
-    });
-
-    return;
-  }
-
-  // NOT FOUND
-  send(res, 404, {
-    message: "Not found"
-  });
+  const [status, data] = await handler(req);
+  send(res, status, data);
 });
 
 
